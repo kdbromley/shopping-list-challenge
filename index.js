@@ -29,6 +29,6 @@ $(function() {
       // target closest 'li' bc .closest includes current element
       //so .closest(span) would just target span for check toggle button
       //<li> high enough in DOM tree to move down w .find() to locate <span> for item string
-      $(this).closest('li').find('.shopping-item').toggleClass('.shopping-item__checked');
+      $(this).closest('li').find('.shopping-item').toggleClass('shopping-item__checked');
     });
 });
