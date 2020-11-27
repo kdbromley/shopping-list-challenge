@@ -77,10 +77,31 @@ function handleNewItemSubmit() {
     
 }
 
+function toggleCheckedForListItem(itemId) {
+    console.log('Toggling checked property for item with id + ' itemId);
+    const item = STORE.find(item => item.id === itemId)
+    item.checked = !item.checked;  
+}
+
+function getItemIdFromElement(item) {
+    return $(item)
+    .closest('li')
+    .data('item-id')
+}
+
 function handleItemCheckClicked() {
     //fn will be responsible for when users click the check button on shopping list item
     //target <ul> class to bind event listener for click on check button
-    //event function target li (climb DOM tree) then find .js-shopping-item and toggleClass __checked class
+    $('.shopping-list').on('click', '.js-item-toggle', event => {
+        console.log('handleItemCheckClicked ran');
+    //retrieve item's id from data attb --> new fn
+    const itemId = getItemIdFromElement(event.currentTarget);
+    toggleCheckedForListItem(itemId);
+    renderShoppingList();
+    
+    })
+    
+    //toggle checked property for item in store 
     //render/update shopping list STORE with new checked : t/f 
     console.log('`handleItemCheckClicked` ran'):
 }
