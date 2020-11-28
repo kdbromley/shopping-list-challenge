@@ -103,16 +103,24 @@ function handleItemCheckClicked() {
     
     //toggle checked property for item in store 
     //render/update shopping list STORE with new checked : t/f 
-    console.log('`handleItemCheckClicked` ran'):
+    console.log('`handleItemCheckClicked` ran');
 }
 
 function handleDeleteItemClicked() {
-    //fn for when users want to delete a shopping list item
-    //target ul class to bind event listener for click on delete button
-    //event function target closest li and remove
-    //render/update shopping list STORE with item removed
-    console.log('`handleDeleteItemClicked`ran');
-}
+    // this function will be responsible for when users want to delete a shopping list
+    //event listener (delegation) targeting ul class for click on delete item button
+    $('.js-shopping-list').on('click', `.js-item-delete`, event => {
+      console.log('`handleDeleteItemClicked` ran');
+      //get id same as clicked 
+      const itemId = getItemIdFromElement(event.currentTarget);
+      //fn delete from STORE 
+      deleteItemFromShoppingList(itemId);
+      //re-renderShoppingList (will remove li from DOM)
+      renderShoppingList();
+  
+    })
+    console.log('`handleDeleteItemClicked` ran')
+  }
 
 //callback fn when page loads
 //responsible for init rendering shopping list and activating indiv fn
